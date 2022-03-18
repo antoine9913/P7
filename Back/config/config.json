@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "Mamie0726",
+    "database": "database_development_goupomaniap7",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "Mamie0726",
+    "database": "database_test_goupomaniap7",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "Mamie0726",
+    "database": "database_production_goupomaniap7",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
