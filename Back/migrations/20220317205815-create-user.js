@@ -24,7 +24,7 @@ module.exports = {
         allowNull: true,
         type: Sequelize.STRING
       },
-      iAdmin: {
+      isAdmin: {
         allowNull: false,
         type: Sequelize.BOOLEAN
       },

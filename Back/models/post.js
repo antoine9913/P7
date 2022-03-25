@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     content: DataTypes.STRING,
     attachement: DataTypes.STRING,
-    likes: DataTypes.BOOLEAN 
+    likes: DataTypes.INTEGER 
   }, {
     classMethods: {
       associate: function(models) {
