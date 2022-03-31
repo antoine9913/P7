@@ -1,52 +1,46 @@
-'use strict';
-
+"use strict";
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('comments', {
-      id: {
-        type: Sequelize.INTEGER(11).UNSIGNED,
-        allowNull:     false,
-        primaryKey:    true,
-        autoIncrement: true,
-      },
-      message: {
-        type: Sequelize.TEXT,
-        allowNull: false
-      },
-      ownerId: {
-        type: Sequelize.INTEGER(11).UNSIGNED,
-        allowNull: false,
-        onDelete: 'CASCADE',
-        references: {
-          model: {
-            tableName: 'users',
-          },
-          key: 'id',
-        }
-      },
-      postId: {
-        type: Sequelize.INTEGER(11).UNSIGNED,
-        allowNull: false,
-        onDelete: 'CASCADE',
-        references: {
-          model: {
-            tableName: 'posts',
-          },
-          key: 'id',
-        }
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
-    });
-  },
-
-  down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('comments');
-  }
+	up: async (queryInterface, Sequelize) => {
+		await queryInterface.createTable("Comments", {
+			id: {
+				allowNull: false,
+				autoIncrement: true,
+				primaryKey: true,
+				type: Sequelize.INTEGER,
+			},
+			UserId: {
+				allowNull: false,
+				type: Sequelize.INTEGER,
+				references: {
+					model: "Users",
+					key: "id",
+				},
+				onDelete: "CASCADE",
+			},
+			PostId: {
+				allowNull: false,
+				type: Sequelize.INTEGER,
+				references: {
+					model: "Posts",
+					key: "id",
+				},
+				onDelete: "CASCADE",
+			},
+			content: {
+				allowNull: false,
+				type: Sequelize.STRING,
+			},
+			createdAt: {
+				allowNull: false,
+				type: Sequelize.DATE,
+			},
+			updatedAt: {
+				allowNull: false,
+				type: Sequelize.DATE,
+			},
+		});
+	},
+	down: async (queryInterface, Sequelize) => {
+		await queryInterface.dropTable("Comments");
+	},
 };

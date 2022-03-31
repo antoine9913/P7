@@ -1,29 +1,88 @@
-const db = require('../models');
+const db = require("../models");
 
-exports.deleteComment = (req, res, next) => {
-    if (res.locals.userRoles.includes('ADMIN')) {
-        db.Comment.destroy({ where: { id: req.params.id } })
-            .then(() => res.status(200).json({ message: 'Post supprimé !' }))
-            .catch(error => res.status(404).json({ error }))
-    } else {
-        return res.status(403).json({ error: 'Vous ne disposez pas de droits suffisants' })
-    }
-}
+exports.createComment = (req, res) => {
+	db.User.findOne({
+		attributes: ["id", "username", "email"],
+		where: { id: req.userId },
+	})
+		.then((user) => {
+			if (!user) {
+				return res.status(401).json({ error: "Utilisateur inconnu !" });
+			}
 
-exports.createComment = (req, res, next) => {
-    db.Post.findOne({ where: { id: req.body.postId } })
-        .then(post => {           
-            if (!post) {
-                return res.status(404).json({ error: 'Post introuvable !' })
-            }
+			db.Post.findOne({
+				where: { id: req.params.id },
+			})
+				.then((post) => {
+					if (!post) {
+						return res.status(401).json({ error: "post inconnu !" });
+					}
 
-            db.Comment.create({
-                message: req.body.message,
-                ownerId: res.locals.userId,
-                postId: post.id
-            })
-                .then(comment => res.status(201).json({ comment }))
-                .catch(error => res.status(400).json({ error }))
-        })
-        .catch(error => res.status(400).json({ error }))
-}
+					db.Comment.create({
+						content: req.body.content,
+						PostId: req.params.id,
+						UserId: user.id,
+					})
+						.then((comment) => {
+							return res
+								.status(201)
+								.json({ comment, message: "Commentaire créé !" });
+						})
+						.catch((error) => {
+							console.log("0", error);
+							return res.status(400).json({ error: "Pas de création" });
+						});
+				})
+				.catch((error) => {
+					res.status(400).json({ error: "Problème ici !" });
+				});
+		})
+		.catch((error) => {
+			res.status(500).json({ error: "Impossible !" });
+		});
+};
+
+exports.deleteComment = (req, res) => {
+	db.Comment.findOne({
+		where: { id: req.params.id },
+	})
+		.then((commentFound) => {
+			if (commentFound) {
+				db.User.findOne({
+					attributes: ["isAdmin"],
+					where: { id: req.userId },
+				})
+					.then((userIsAdmin) => {
+						// Si l'utilisateur est le créateur OU admin dans la db, on supprime le commentaire
+						if (
+							req.userId == commentFound.UserId ||
+							userIsAdmin.dataValues.isAdmin == true
+						) {
+							db.Comment.destroy({
+								where: { id: req.params.id },
+							})
+								.then(() =>
+									res.status(201).json({ message: "Commentaire supprimé" })
+								)
+								.catch((error) => res.status(404).json({ error }));
+						} else {
+							// Si l'utilisateur n'est pas le créateur ni admin
+							// Status 403 : non autorisé
+							res.status(403).json({
+								error: "Vous n'êtes pas autorisé à supprimer le commentaire",
+							});
+						}
+					})
+					.catch((error) =>
+						res.status(500).json({
+							error: "Impossible de communiquer avec la base de données",
+						})
+					);
+			} else {
+				res.status(404).json({ error: "Commentaire non trouvé" });
+			}
+		})
+		.catch((error) =>
+			res.status(500).json({ error: "Impossible de supprimer le commentaire" })
+		);
+};

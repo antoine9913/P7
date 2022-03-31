@@ -1,47 +1,48 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const helmet = require('helmet');
-const path = require('path');
-
-require('dotenv').config();
+const express = require("express");
+const bodyParser = require("body-parser");
+const path = require("path");
+const helmet = require("helmet");
 
 const app = express();
-const db = require('./models');
 
-const authRoutes = require('./routes/auth');
-const postRoutes = require('./routes/post');
-const commentRoutes = require('./routes/comment');
-const userRoutes = require('./routes/user');
+const userRoutes = require("./routes/user");
+const postRoutes = require("./routes/post");
+const commentRoutes = require("./routes/comment");
 
-// Sécurité du http
+require("dotenv").config();
+const db = require("./models");
+//Connexion à la base de données
+db.sequelize
+	.authenticate()
+	.then(() => {
+		console.log("Connecté à la base de données avec succès");
+	})
+	.catch((error) => {
+		console.log("Impossible de se connecter à la base de données : ", error);
+	});
+    
+//En-têtes HTTP
 app.use(helmet());
-
-// CORS
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-    next();
+	res.setHeader("Access-Control-Allow-Origin", "*");
+	res.setHeader(
+		"Access-Control-Allow-Headers",
+		"Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
+	);
+	res.setHeader(
+		"Access-Control-Allow-Methods",
+		"GET, POST, PUT, DELETE, PATCH, OPTIONS"
+	);
+	next();
 });
 
-// Utilisation de sequelize
-db.sequelize
-    .authenticate()
-    .then(() => {
-        console.log('Connection to the database has been established successfully');
-    })
-    .catch(error => {
-        console.log('Unable to connect to the database : ', error);
-    })
-
-// Pour parser
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use("/images", express.static(path.join(__dirname, "images")));
 
-app.use('/api/auth', authRoutes);
-app.use('/api/post', postRoutes);
-app.use('/api/comment', commentRoutes);
-app.use('/api/user', userRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/post", postRoutes);
+app.use("/api/comment", commentRoutes);
 
 module.exports = app;
