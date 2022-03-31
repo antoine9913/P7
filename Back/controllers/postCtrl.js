@@ -17,9 +17,8 @@ exports.createPost = (req, res, next) => {
     db.Post.create({
         title: req.body.title,
         content: req.body.content,
-        userId: res.locals.userId,
-        likes: 0,
-        attachement: ( req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : null )
+        ownerId: res.locals.userId,
+        image: ( req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : null )
     })
         .then(post => res.status(201).json({ post }))
         .catch(error => res.status(400).json({ error }))
@@ -28,7 +27,7 @@ exports.createPost = (req, res, next) => {
 exports.deletePost = (req, res, next) => {
     db.Post.findOne({ where: { id: req.params.id } })
         .then(post => {
-            if (res.locals.userIsAdmin.includes('ADMIN')) {
+            if (res.locals.userRoles.includes('ADMIN')) {
                 if (post.image) {
                     const filename = post.image.split('/images/')[1];
                     fs.unlink(`images/${filename}`, (err) => {

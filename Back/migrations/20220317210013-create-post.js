@@ -1,16 +1,31 @@
 'use strict';
+
 module.exports = {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Posts', {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.createTable('posts', {
       id: {
-        allowNull: false,
+        type: Sequelize.INTEGER(11).UNSIGNED,
+        allowNull:     false,
+        primaryKey:    true,
         autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
       },
-      userId: {
+      title: {
+        type: Sequelize.TEXT,
         allowNull: false,
-        type: Sequelize.INTEGER,
+      },
+      image: {
+        type: Sequelize.STRING,
+      },
+      content: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+      },
+      image: {
+        type: Sequelize.STRING,
+      },
+      ownerId: {
+        type: Sequelize.INTEGER(11).UNSIGNED,
+        allowNull: false,
         onDelete: 'CASCADE',
         references: {
           model: {
@@ -18,22 +33,6 @@ module.exports = {
           },
           key: 'id',
         }
-      },
-      title: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      content: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      attachement: {
-        allowNull: true,
-        type: Sequelize.STRING
-      },
-      likes: {
-        allowNull: false,
-        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -45,7 +44,8 @@ module.exports = {
       }
     });
   },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Posts');
+
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.dropTable('posts');
   }
 };

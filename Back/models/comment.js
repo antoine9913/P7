@@ -1,26 +1,65 @@
 'use strict';
-const { Model } = require('sequelize');
+
+const { Model} = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  var Comment = sequelize.define('Comment', {
-    userId: DataTypes.STRING,
-    postId: DataTypes.STRING,
-    content: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate: function(models) {
-        models.Comment.belongsTo(models.User, {
-          foreignKey: {
-            allowNull: false
+  class Comment extends Model {
+    static associate(models) {
+      Comment.belongsTo(models.User, {
+        foreignKey: 'ownerId',
+        onDelete: 'CASCADE',
+      });
+      Comment.belongsTo(models.Post, {
+        foreignKey: 'postId',
+        onDelete: 'CASCADE',
+      })
+    }
+  };
+  
+  Comment.init({
+    id: {
+      type: DataTypes.INTEGER(11).UNSIGNED,
+      allowNull:     false,
+      primaryKey:    true,
+      autoIncrement: true,
+    },
+    message: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Le contenu du commentaire ne peut pas être vide',
+        },
+        notEmpty: {
+          msg: 'Le contenu du commentaire ne peut pas être vide',
+        },
+        isValidLength(message) {
+          if (message.length > 200) {
+            throw new Error('Le commentaire ne peut pas dépasser 200 caractères');
           }
-        }),
-        models.Comment.belongsTo(models.Post, {
-          foreignKey: {
-            allowNull: false
-          }
-        });
+        },
+      }
+    },
+    ownerId: {
+      type: DataTypes.INTEGER(11).UNSIGNED,
+      allowNull: false,
+    },
+    postId: {
+      type: DataTypes.INTEGER(11).UNSIGNED,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Le postId ne peut pas être vide',
+        },
+        notEmpty: {
+          msg: 'Le postId ne peut pas être vide',
+        },
+        isInt: true
       }
     }
+  }, {
+    sequelize,
+    modelName: 'Comment',
   });
   return Comment;
 };

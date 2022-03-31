@@ -1,16 +1,21 @@
 'use strict';
+
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('comments', {
       id: {
-        allowNull: false,
+        type: Sequelize.INTEGER(11).UNSIGNED,
+        allowNull:     false,
+        primaryKey:    true,
         autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
       },
-      userId: {
+      message: {
+        type: Sequelize.TEXT,
+        allowNull: false
+      },
+      ownerId: {
+        type: Sequelize.INTEGER(11).UNSIGNED,
         allowNull: false,
-        type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {
           model: {
@@ -20,8 +25,8 @@ module.exports = {
         }
       },
       postId: {
+        type: Sequelize.INTEGER(11).UNSIGNED,
         allowNull: false,
-        type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {
           model: {
@@ -29,10 +34,6 @@ module.exports = {
           },
           key: 'id',
         }
-      },
-      content: {
-        allowNull: true,
-        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -44,7 +45,8 @@ module.exports = {
       }
     });
   },
-  async down(queryInterface, Sequelize) {
+
+  down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('comments');
   }
 };

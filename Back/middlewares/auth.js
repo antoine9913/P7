@@ -9,15 +9,15 @@ module.exports = (req, res, next) => {
         }
 
         const token = req.headers.authorization.split(' ')[1];
-        const decodedToken = jwt.verify(token, process.env.JWT_SIGN_SECRET);
+        const decodedToken = jwt.verify(token, process.env.TKN);
         const userId = decodedToken.userId;
-        const userIsAdmin = decodedToken.isAdmin;
+        const userRoles = decodedToken.roles;
 
         if (req.body.userId && parseInt(req.body.userId, 10) !== userId) {
             throw 'Identifiant utilisateur invalide';
         } else {
             res.locals.userId = userId;
-            res.locals.userIsAdmin = userIsAdmin;
+            res.locals.userRoles = userRoles;
             next();
         }
     } catch (error) {
