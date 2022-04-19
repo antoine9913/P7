@@ -125,7 +125,7 @@ exports.update = (req, res) => {
 	db.Post.findByPk(id).then((post) => {
 		const filename = post.attachment
 			? {
-					name: post.attachment.split("3000/")[1],
+					name: post.attachment.split("/images/")[1],
 			  }
 			: {
 					name: post.attachment,

@@ -2,14 +2,14 @@ const express = require("express");
 const router = express.Router();
 
 const auth = require("../middleware/auth");
-const multer = require("../middleware/multer-config");
+const upload = require("../middleware/multer-config");
 const postCtrl = require("../controllers/postCtrl");
 
 // CRUD Routes
-router.post("/create", auth, multer, postCtrl.create);
+router.post("/create", auth, upload.single('image'), postCtrl.create);
 router.get("/", auth, postCtrl.getAllPosts);
 router.get("/:id", auth, postCtrl.getOnePost);
-router.put("/update/:id", auth, multer, postCtrl.update);
+router.put("/update/:id", auth, upload.single('image'), postCtrl.update);
 router.delete("/delete/:id", auth, postCtrl.delete);
 
 //Likes

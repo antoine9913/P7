@@ -30,7 +30,7 @@ exports.register = (req, res) => {
 						avatar: "http://localhost:8080/images/avatar.png",
 						bio: "Veuillez compléter votre profil...",
 						password: hash,
-						isAdmin: 0,
+						isAdmin: false
 					})
 						.then((user) => {
 							res.status(201).json({
@@ -114,11 +114,12 @@ exports.updateProfile = (req, res) => {
 	db.User.findByPk(id).then((user) => {
 		const filename = user.avatar
 			? {
-					name: user.avatar.split("3000/")[1],
+					name: user.avatar.split("/images/")[1],
 			  }
 			: {
 					name: user.avatar,
 			  };
+			  console.log(filename)
 		fs.unlink(`images/${filename.name}`, () => {
 			db.User.update(data, {
 				where: { id: id },
