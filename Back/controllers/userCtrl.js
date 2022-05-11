@@ -27,14 +27,14 @@ exports.register = (req, res) => {
 					db.User.create({
 						email: req.body.email,
 						username: req.body.username,
-						avatar: "http://localhost:8080/images/avatar.png",
+						avatar: "http://localhost:5000/images/avatar.png",
 						bio: "Veuillez compléter votre profil...",
 						password: hash,
 						isAdmin: false
 					})
 						.then((user) => {
-							res.status(201).json({
-								id: user.id,
+							res.status(200).json({
+								valide: true, message: "inscription faite"
 							});
 						})
 						.catch((error) => res.status(400).json({ error }));
@@ -62,6 +62,7 @@ exports.login = (req, res) => {
 					}
 
 					res.status(200).json({
+						email: user.email,
 						userId: user.id,
 						isAdmin: user.isAdmin,
 						username: user.username,
