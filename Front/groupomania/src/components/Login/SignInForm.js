@@ -37,7 +37,7 @@ const SignInForm = () => {
                 }
             }
             );
-            // window.location = "/publication";
+            window.location = "/home";
             console.log(JSON.stringify(response?.data));
             const accessToken = response?.data?.Token;
             const isAdmin = response?.data?.isAdmin;
