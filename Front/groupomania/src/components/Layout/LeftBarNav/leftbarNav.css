@@ -1,0 +1,20 @@
+.left-nav-container {    
+    left: 0;
+    position: absolute;
+    min-height: 826px;
+    width: 80px;
+    background-color: black;
+    height: 100%;
+}
+
+svg {
+    font-size: 80%;
+}
+
+.icons-bis {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    align-items: center;
+    font-size: 50px;
+}

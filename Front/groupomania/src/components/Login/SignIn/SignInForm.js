@@ -1,10 +1,10 @@
-import { useRef, useState, useEffect, useContext } from 'react';
-import AuthContext from '../../context/AuthProvider';
+import { useRef, useState, useEffect } from 'react';
 
-import axios from '../../api/axios';
+import axios from '../../../api/axios';
+
+import './signIn.css';
 
 const SignInForm = () => {
-    const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
 
@@ -38,12 +38,8 @@ const SignInForm = () => {
             }
             );
             window.location = "/home";
-            console.log(JSON.stringify(response?.data));
-            const accessToken = response?.data?.Token;
-            const isAdmin = response?.data?.isAdmin;
-            setAuth({ email, password, isAdmin, accessToken });
-            setEmail('');
-            setPassword('');
+            localStorage.setItem("User", JSON.stringify(response.data));
+            return response.data;
         } 
         catch (err) {
         if(!err?.response) {
@@ -60,37 +56,39 @@ const SignInForm = () => {
 }
 
     return (
+        <div className="container">
+            <img className="img-logo" src="../images/icon.svg" alt="logo background" />
        <section>
            <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-           <h1>se connecter</h1>
-           <br />
            <form onSubmit={handleLogin}>
-               <label htmlFor="email">Email</label>
                <input 
                type="text" 
                id='email'
                ref={userRef}
                autoComplete='off'
                onChange={(e) => setEmail(e.target.value)}
+               placeholder="Adresse email"
                value={email}
                required 
                />
                <br />
-               <label htmlFor="password">Mot de passe</label>
                <input 
                type="password" 
                id='password'
                onChange={(e) => setPassword(e.target.value)}
+               placeholder="Mot de passe"
                value={password}
                required 
                />
-               <button>Se connecter</button>
+               <button className='SignInButton'>Se connecter</button>
                <br />
-               <button>
+               <label htmlFor=""></label>
+               <button className='SignInButton'>
                    <a href="/register">Créer un nouveau compte</a>
                 </button>
            </form>
        </section>
+       </div>
     );
 };
 

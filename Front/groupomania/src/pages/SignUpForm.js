@@ -1,14 +1,15 @@
 import React from 'react';
-import Register from '../components/Login/SignUpForm'
+import Footer from '../components/Layout/Footer/Footer';
+import Header from '../components/Layout/Header/Header';
+import Register from '../components/Login/SignUp/SignUpForm'
 
 const SignUpForm = () => {
     return (
         <div className="SignUpForm-page">
             <div className="SignUpForm-container">
-                    <Register />
-                <div className="img-container">
-                    <img src="./images/icon-left-font.svg" alt="" />
-                </div>
+                <Header />
+                <Register />
+                <Footer />
             </div>
         </div>
     );

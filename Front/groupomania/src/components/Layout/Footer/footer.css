@@ -1,0 +1,14 @@
+.footer-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    position: absolute;
+    bottom: 0;
+}
+
+p {
+    color: #FFD7D7;
+    font-size: 25px;
+    width: 500px;
+}

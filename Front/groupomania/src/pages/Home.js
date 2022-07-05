@@ -1,12 +1,16 @@
 import React from 'react';
-import LeftNav from '../components/LeftNav'
-import Thread from '../components/Thread';
+import LeftNav from '../components/Layout/LeftBarNav/LeftNav'
+import NavBarHome from '../components/Layout/Header/NavBarHome';
+import Thread from '../components/Publication/Thread';
+
+import './home.css'
 
 const Home = () => {
     return (
         <div className="home">
-            <LeftNav />
+                <NavBarHome />
             <div className="main">
+                <LeftNav />
                 <Thread />
             </div>
         </div>

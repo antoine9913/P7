@@ -1,29 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignInForm from "../../pages/SignInForm";
 import SignUpForm from "../../pages/SignUpForm";
-import Home from "../../pages/Home";
-import NavBar from "../NavBar";
-import { hasAuthenticated } from "../../services/AuthApi";
-import Auth from "../../context/Auth";
-import AuthenticatedRoute from "./AuthenticatedRoute";
+import ProtectedRoute from "../../context/ProtectedRoute";
+import Home from "../../pages/Home"
+import AllProfil from "../Profil/AllProfil/AllProfil";
 
 const index = () => {
-
-  const [isAuthenticated, setIsAuthenticated] = useState(hasAuthenticated());
-
   return (
-    <Auth.Provider value={{isAuthenticated, setIsAuthenticated}} >
     <BrowserRouter>
-    <NavBar />
       <Routes>
         <Route path="/" element={<SignInForm />}/>
         <Route path="/register" element={<SignUpForm/>}/>
-        <AuthenticatedRoute path="/home" element={<Home/>}/>
-        {/* <AuthenticatedRoute path="/profil" element={<Profil/>} /> */}
+        <Route element={<ProtectedRoute/>}>
+          <Route path="/home" element={<Home/>}/>
+          <Route path="/profil" element={<AllProfil/>}/>
+        </Route>
       </Routes>
     </BrowserRouter>
-    </Auth.Provider>
   );
 };
 

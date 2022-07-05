@@ -1,0 +1,21 @@
+.container-new-post {
+    width: auto;
+    margin: 50px 0;
+    border-bottom: 2px solid black;
+    padding: 15px 15px 0 15px;
+}
+
+.form-signIn-send {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    border-top: 2px solid black;
+    border-radius: 0 0 20px 20px;
+}
+
+button {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: #FFD7D7;
+}

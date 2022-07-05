@@ -2,7 +2,9 @@ import { useEffect, useState, useRef } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import axios from "../../api/axios"
+import axios from "../../../api/axios"
+
+import './signUp.css'
 
 const EMAIL_REGEX = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 const USERNAME_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
@@ -14,20 +16,20 @@ const SignUpForm = () => {
     const errRef = useRef();
 
     const [email, setEmail] = useState('');
-    const [validEmail, setValidEmail] = useState('false');
-    const [emailFocus, setEmailFocus] = useState('false');
+    const [validEmail, setValidEmail] = useState(false);
+    const [emailFocus, setEmailFocus] = useState(false);
 
     const [username, setUsername] = useState('');
-    const [validUsername, setvalidUsername] = useState('false');
-    const [usernameFocus, setUsernameFocus] = useState('false');
+    const [validUsername, setvalidUsername] = useState(false);
+    const [usernameFocus, setUsernameFocus] = useState(false);
 
     const [password, setPassword] = useState('');
-    const [validPassword, setValidPassword] = useState('false');
-    const [passwordFocus, setPasswordFocus] = useState('false');
+    const [validPassword, setValidPassword] = useState(false);
+    const [passwordFocus, setPasswordFocus] = useState(false);
 
     const [matchPassword, setMatchPassword] = useState('');
-    const [validMatchPassword, setValidMatchPassword] = useState('false');
-    const [matchPasswordFocus, setMatchPasswordFocus] = useState('false');
+    const [validMatchPassword, setValidMatchPassword] = useState(false);
+    const [matchPasswordFocus, setMatchPasswordFocus] = useState(false);
 
     const [errMsg, setErrMsg] = useState('');
 
@@ -101,21 +103,20 @@ const SignUpForm = () => {
     }
 
     return (
+        <div className="container">
+            <img className="img-logo" src="../images/icon.svg" alt="logo background" />
         <section>
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-           <h1>S'inscrire</h1>
            <form onSubmit={handleRegister}>
-                <label htmlFor="email">
-                   Email
                     <FontAwesomeIcon icon={faCheck} className={validEmail ? "valid" : "hide"} />
                     <FontAwesomeIcon icon={faTimes} className={validEmail || !email ? "hide" : "invalid"} />
-                </label>
                 <input 
                 type="text"
                 id="email"
                 ref={userRef}
                 autoComplete="off"
                 onChange={(e) => setEmail(e.target.value)}
+                placeholder="Adresse email"
                 required
                 aria-invalid={validEmail ? "false" : "true"}
                 aria-describedby="emailnote"
@@ -128,19 +129,17 @@ const SignUpForm = () => {
                     Must begin with a letter.<br />
                     Letters, numbers, underscores, hyphens allowed.
                 </p>
+                <br />
 
-
-               <label htmlFor="username">
-                   Username
                     <FontAwesomeIcon icon={faCheck} className={validUsername ? "valid" : "hide"} />
                     <FontAwesomeIcon icon={faTimes} className={validUsername || !username ? "hide" : "invalid"} />
-                </label>
                 <input 
                 type="text"
                 id="username"
                 ref={userRef}
                 autoComplete="off"
                 onChange={(e) => setUsername(e.target.value)}
+                placeholder="Nom d'Utilisateur"
                 required
                 aria-invalid={validUsername ? "false" : "true"}
                 aria-describedby="uidnote"
@@ -153,17 +152,15 @@ const SignUpForm = () => {
                     Must begin with a letter.<br />
                     Letters, numbers, underscores, hyphens allowed.
                 </p>
+                    <br />
 
-
-                <label htmlFor="password">
-                   Mot de passe
                     <FontAwesomeIcon icon={faCheck} className={validPassword ? "valid" : "hide"} />
                     <FontAwesomeIcon icon={faTimes} className={validPassword || !password ? "hide" : "invalid"} />
-                </label>
                 <input 
                 type="password"
                 id="password"
                 onChange={(e) => setPassword(e.target.value)}
+                placeholder="Mot de passe"
                 required
                 aria-invalid={validPassword ? "false" : "true"}
                 aria-describedby="pwdnote"
@@ -182,17 +179,15 @@ const SignUpForm = () => {
                     <span aria-label="percent">%</span>
                     <span aria-label="asterix">*</span>
                 </p>
+                    <br />
 
-
-                <label htmlFor="confrim_password">
-                   Confirmez votre mot de passe
                     <FontAwesomeIcon icon={faCheck} className={validMatchPassword && matchPassword ? "valid" : "hide"} />
                     <FontAwesomeIcon icon={faTimes} className={validMatchPassword || !matchPassword ? "hide" : "invalid"} />
-                </label>
                 <input 
                 type="password"
                 id="confirm_password"
                 onChange={(e) => setMatchPassword(e.target.value)}
+                placeholder="Confirmez votre mot de passe"
                 required
                 aria-invalid={validMatchPassword ? "false" : "true"}
                 aria-describedby="confirmpwdnote"
@@ -204,13 +199,15 @@ const SignUpForm = () => {
                     Must match the first password input field.
                 </p>
 
-               <button disabled={!validEmail || !validUsername || !validPassword || !validMatchPassword ? true : false}>S'inscrire</button>
+               <button className="SignUpButton" disabled={!validEmail || !validUsername || !validPassword || !validMatchPassword ? true : false}>S'inscrire</button>
                <br />
-               <button>
+               <label></label>
+               <button className="SignUpButton">
                    <a href="/">Déja inscrit ? connectez-vous</a>
                 </button>
            </form>
         </section>
+        </div>
     );
 };
 

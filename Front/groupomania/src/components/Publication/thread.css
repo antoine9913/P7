@@ -1,0 +1,13 @@
+.container-thread {
+    position: relative;
+    width: 40%;
+    font-size: 1em;
+}
+
+h1 , h2 {
+    font-size: 1.2em;
+}
+
+p {
+    font-size: 1em;
+}

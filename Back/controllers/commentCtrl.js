@@ -1,14 +1,6 @@
 const db = require("../models");
 
 exports.createComment = (req, res) => {
-	db.User.findOne({
-		attributes: ["id", "username", "email"],
-		where: { id: req.userId },
-	})
-		.then((user) => {
-			if (!user) {
-				return res.status(401).json({ error: "Utilisateur inconnu !" });
-			}
 
 			db.Post.findOne({
 				where: { id: req.params.id },
@@ -21,7 +13,7 @@ exports.createComment = (req, res) => {
 					db.Comment.create({
 						content: req.body.content,
 						PostId: req.params.id,
-						UserId: user.id,
+						UserId: req.body.id,
 					})
 						.then((comment) => {
 							return res
@@ -36,10 +28,21 @@ exports.createComment = (req, res) => {
 				.catch((error) => {
 					res.status(400).json({ error: "Problème ici !" });
 				});
+};
+
+exports.getAllComment = (req, res) => {
+	db.Comment.findAll({ where: { PostId: req.params.id },
+		include: [
+			{
+				model: db.User,
+				attributes: ["username", "avatar"],
+			},
+		],
+		order: [["createdAt", "DESC"]], })
+		.then((post) => {
+			res.status(200).json(post);
 		})
-		.catch((error) => {
-			res.status(500).json({ error: "Impossible !" });
-		});
+		.catch((error) => res.status(500).json({ error }));
 };
 
 exports.deleteComment = (req, res) => {

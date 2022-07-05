@@ -10,7 +10,7 @@ router.post("/create", auth, upload.single('image'), postCtrl.create);
 router.get("/", auth, postCtrl.getAllPosts);
 router.get("/:id", auth, postCtrl.getOnePost);
 router.put("/update/:id", auth, upload.single('image'), postCtrl.update);
-router.delete("/delete/:id", auth, postCtrl.delete);
+router.delete("/:id/delete/:id", auth, postCtrl.delete);
 
 //Likes
 router.post("/:id/like", auth, postCtrl.addLike);

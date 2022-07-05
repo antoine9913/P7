@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+
+section {
+    width: 400px;
+    background-color: #FFD7D7;
+    border: 2px solid black;
+    border-radius: 20px;
+    margin: 100px 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: #FFD7D7;
+    border-radius: 20px;
+    padding: 1rem;
+    position: relative;
+}
+
+a, a:visited {
+    color: #FFD7D7;
+    background-color: black;
+    text-decoration: none;
+}
+
+input[type="text"],
+input[type="password"],
+button,
+textarea {
+  font-family: 'Nunito', sans-serif;
+  padding: 5px;
+  border-radius: 10px;
+  border: 2px solid black;
+  color: #FFD7D7;
+  min-width: 200px;
+}
+
+::placeholder{
+
+  color: #FFD7D7;
+}
+
+.SignInButton , .SignUpButton{
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background-color: black;
+}
+
+label {
+    border-bottom: 2px solid black;
+}
+
+.SignInForm-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.img-logo{
+  opacity: 25%;
+  left: -500px;
+  position: absolute;
+  z-index: -1;
+  top: -250px;
+  width: auto;
+}
+
+.container {     
+  position: relative;
+  display: flex;
+  width: 40%;
+  justify-content: center;
+}
+
+.logo-allpage {
+    width: 40px;
+}
