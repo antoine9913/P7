@@ -5,10 +5,14 @@
     background-color: black;
     position: absolute;
     bottom: 0;
+    height: 80px;
 }
 
-p {
+.footer-p {
+    display: flex;
     color: #FFD7D7;
-    font-size: 25px;
+    font-size: 1.13em;
     width: 500px;
+    align-items: center;
+    justify-content: center;
 }

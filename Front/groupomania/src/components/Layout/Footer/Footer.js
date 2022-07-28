@@ -6,7 +6,7 @@ const Footer = () => {
 
     return (
         <div className="footer-container">
-            <p>Avec Groupomania, partagez et restez en contact avec vos collègues.</p>
+            <p className='footer-p'>Avec Groupomania, partagez et restez en contact avec vos collègues.</p>
         </div>
     );
 };

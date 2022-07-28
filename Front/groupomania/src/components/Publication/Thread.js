@@ -6,7 +6,7 @@ import './thread.css'
 const Thread = () => {
     return (
         <div className='container-thread'>
-        <img className="img-logo" src="../images/icon.svg" alt="logo background" />
+        <img className="img-logo-thread" src="../images/icon.svg" alt="logo background" />
             <PostForm />
             <AllPost />
         </div>

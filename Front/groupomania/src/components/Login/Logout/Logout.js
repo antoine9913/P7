@@ -14,6 +14,7 @@ const Logout = () => {
     return (
         <NavLink to='/' onClick={logoutHandler} exact activeClassName="active-left-nav">
             <FontAwesomeIcon icon={faRightFromBracket}/>
+            <h4>Déconnexion</h4>
         </NavLink>
     );
 

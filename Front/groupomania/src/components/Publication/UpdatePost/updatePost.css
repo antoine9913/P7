@@ -1,0 +1,34 @@
+.post-update-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.post-update-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 20px;
+    padding: 1rem;
+    position: relative;
+    align-items: center;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.post-update-container-attachment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.post-update-title, .post-update-content{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.post-update-preview-attachment {
+    margin-bottom: 20px;
+}

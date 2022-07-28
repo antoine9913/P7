@@ -112,9 +112,7 @@ exports.update = (req, res) => {
 				title: req.body.title,
 				content: req.body.content,
 				userId: req.body.userId,
-				attachment: `${req.protocol}://${req.get("host")}/images/${
-					req.file.filename
-				}`,
+				attachment: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
 		  }
 		: {
 				title: req.body.title,
@@ -122,32 +120,33 @@ exports.update = (req, res) => {
 				userId: req.body.userId,
 		  };
 
-	db.Post.findByPk(id).then((post) => {
-		const filename = post.attachment
-			? {
-					name: post.attachment.split("/images/")[1],
-			  }
-			: {
-					name: post.attachment,
-			  };
-		fs.unlink(`images/${filename.name}`, () => {
-			db.Post.update(data, {
-				where: { id: id },
-			})
+		  db.Post.findByPk(id).then((post) => {
+			const filename = post.attachment
+				? {
+						name: post.attachment.split("/images/")[1],
+				  }
+				: {
+						name: post.attachment,
+				  };
+				  console.log(filename)
+			fs.unlink(`images/${filename.name}`, () => {
+				db.Post.update(data, {
+					where: { id: id },
+				})
 				.then((num) => {
 					if (num == 1) {
 						res.send({
-							message: "Le post a été mis à jour.",
+							message: "Le message a été mis à jour.",
 						});
 					} else {
 						res.send({
-							message: "Erreur lors de la mise à jour de ce post",
+							message: "Erreur lors de la mise à jour de ce message",
 						});
 					}
 				})
 				.catch((err) => {
 					res.status(500).send({
-						message: "Impossible de mettre à jour ce post",
+						message: "Impossible de mettre à jour ce message",
 					});
 				});
 		});

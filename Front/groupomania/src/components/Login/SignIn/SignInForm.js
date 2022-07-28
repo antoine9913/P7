@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 
 import axios from '../../../api/axios';
 
@@ -84,7 +85,9 @@ const SignInForm = () => {
                <br />
                <label htmlFor=""></label>
                <button className='SignInButton'>
-                   <a href="/register">Créer un nouveau compte</a>
+                    <NavLink to='/register'>
+                        <span>Créer un nouveau compte</span>
+                    </NavLink>
                 </button>
            </form>
        </section>

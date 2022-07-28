@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { NavLink } from 'react-router-dom';
 
 import axios from "../../../api/axios"
 
@@ -203,7 +204,9 @@ const SignUpForm = () => {
                <br />
                <label></label>
                <button className="SignUpButton">
-                   <a href="/">Déja inscrit ? connectez-vous</a>
+                    <NavLink to='/'>
+                        <span>Déja inscrit ? connectez-vous</span>
+                    </NavLink>
                 </button>
            </form>
         </section>

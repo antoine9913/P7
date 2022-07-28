@@ -6,10 +6,10 @@ const upload = require("../middleware/multer-config");
 const postCtrl = require("../controllers/postCtrl");
 
 // CRUD Routes
-router.post("/create", auth, upload.single('image'), postCtrl.create);
+router.post("/create", auth, upload.single('file'), postCtrl.create);
 router.get("/", auth, postCtrl.getAllPosts);
 router.get("/:id", auth, postCtrl.getOnePost);
-router.put("/update/:id", auth, upload.single('image'), postCtrl.update);
+router.put("/update/:id", upload.single('file'), postCtrl.update);
 router.delete("/:id/delete/:id", auth, postCtrl.delete);
 
 //Likes

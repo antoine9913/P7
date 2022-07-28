@@ -26,7 +26,9 @@ const DeletePost = (id) => {
         };
 
     return (
-        <img className='logo-allpage' src="../images/icons/trash.svg" alt="trash" onClick={HandleDeletePost}/>
+        <button onClick={HandleDeletePost}>
+            <img className='logo-allpage' src="../images/icons/trash.svg" alt="trash" />
+        </button>
     );
 };
 

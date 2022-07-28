@@ -29,7 +29,9 @@ const DeleteProfil = () => {
         };
 
     return (
-        <img src="../images/icons/trash.svg" alt="trash" onClick={HandleDeleteProfil}/>
+        <button onClick={HandleDeleteProfil}>
+            <img src="../images/icons/trash.svg" alt="trash" />
+        </button>
     );
 };
 

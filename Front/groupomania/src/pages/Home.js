@@ -1,5 +1,4 @@
 import React from 'react';
-import LeftNav from '../components/Layout/LeftBarNav/LeftNav'
 import NavBarHome from '../components/Layout/Header/NavBarHome';
 import Thread from '../components/Publication/Thread';
 
@@ -10,7 +9,6 @@ const Home = () => {
         <div className="home">
                 <NavBarHome />
             <div className="main">
-                <LeftNav />
                 <Thread />
             </div>
         </div>

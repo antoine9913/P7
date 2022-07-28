@@ -1,0 +1,36 @@
+.users-update-avatar {
+    object-fit: cover;
+    width: 300px;
+    height: 300px;
+    border-radius: 40px;
+    box-shadow: 0px 0px 10px 2px black;
+    margin-bottom: 20px;
+}
+
+.users-form-update-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 20px;
+    padding: 1rem;
+    position: relative;
+    align-items: center;
+}
+
+.users-update-container-profil {
+    width: min-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.users-update-container-bio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.users-update-bio, .users-update-username {
+    margin-bottom: 40px
+}

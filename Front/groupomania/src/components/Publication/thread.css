@@ -11,3 +11,12 @@ h1 , h2 {
 p {
     font-size: 1em;
 }
+
+.img-logo-thread {
+    opacity: 25%;
+    left: -700px;
+    position: absolute;
+    z-index: -1;
+    top: -500px;
+    width: auto;
+}

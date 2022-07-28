@@ -1,11 +1,126 @@
+h4 {
+  color: white;
+  margin: 0 0 0 50px;
+}
+
 h5 {
-    position: absolute;
-    top: 25px;
+    width: max-content;
+    margin: 0px 25px;
     color: white;
-    margin-right: 50px;
-    right: 0;
 }
 
 .navHome-container {
     height: 80px;
+    display: flex;
+    align-items: center;
 }
+
+.navbar-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    object-fit: cover;
+}
+
+.navbar-User-Informations {       
+    position: absolute;
+    right: 20px;
+    top: 0px;
+}
+
+.navbar-menu {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    background-color: black;
+}
+
+svg {
+    color: white;
+    font-size: 1.3em;
+}
+
+.navbar-button{
+    background-color: black;
+}
+
+
+nav {
+    position: sticky;
+  }
+
+  nav > ul {
+    display: flex;
+    text-align: center;
+    box-shadow: 0px 1px 2px 1px black;
+    height: var(--hauteur-menu);
+  }
+  
+  nav ul {
+    list-style-type: none;
+  }
+  
+  nav > ul > li {
+    background-color: black;
+    position: relative;
+    height: 100%;
+    flex: 1;
+  }
+  
+  nav > ul > li > a {
+    position: absolute;
+  }
+  
+  li a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  .navbar-button > a:after{
+    font-size: 15px;
+    margin-left: 7px;
+    display: inline-block;
+  }
+  
+  .left-nav-container {
+    margin: 0;
+    width: 100%;
+    text-align: left;
+    overflow: hidden;
+    max-height: 0;
+    border-radius: 2px;
+    background-color: black;
+    border-radius: 0 0 0 20px;
+  }
+  
+  .navbar-button:hover > .left-nav-container {
+    animation: apparitionSousMenu 1s forwards;
+  }
+  
+  @keyframes apparitionSousMenu {
+    0% {
+        box-shadow: 0px 3px 3px 1px black;
+        position: absolute;
+    }
+    30% {
+      box-shadow: 0px 3px 3px 1px black;
+    }
+    100% {
+        max-height: 50em;
+        position: absolute;
+        box-shadow: -3px 3px 6px 2px black;
+        z-index: 2;
+    }
+  }
+  
+  .left-nav-container > li > a {
+    align-items: center;
+    display: flex;
+    height: 50px;
+    width: 100%;
+    background-color: black;
+  }
+  
+  .sous-menu > li:hover > a {
+    color: black;
+  }

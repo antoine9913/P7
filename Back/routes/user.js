@@ -8,7 +8,7 @@ const upload = require("../middleware/multer-config");
 router.post("/register", userCtrl.register);
 router.post("/login", userCtrl.login);
 router.get("/profile/:id", auth, userCtrl.getUserProfile);
-router.put("/profile/:id", auth, upload.single('image'), userCtrl.updateProfile);
+router.put("/profile/:id", upload.single('file'), userCtrl.updateProfile);
 router.delete("/profile/:id", auth, userCtrl.deleteProfile);
 
 module.exports = router;

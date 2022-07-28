@@ -5,6 +5,7 @@ import SignUpForm from "../../pages/SignUpForm";
 import ProtectedRoute from "../../context/ProtectedRoute";
 import Home from "../../pages/Home"
 import AllProfil from "../Profil/AllProfil/AllProfil";
+import UpdateProfil from "../Profil/UpdateProfil/UpdateProfil";
 
 const index = () => {
   return (
@@ -15,6 +16,7 @@ const index = () => {
         <Route element={<ProtectedRoute/>}>
           <Route path="/home" element={<Home/>}/>
           <Route path="/profil" element={<AllProfil/>}/>
+          <Route path="/updateProfil" element={<UpdateProfil/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

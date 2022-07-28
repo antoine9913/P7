@@ -1,62 +1,123 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState} from 'react';
 
 import axios from '../../../api/axios';
-import "./updateProfil.css"
+import NavBarHome from '../../Layout/Header/NavBarHome';
+
+import './updateProfil.css'
+
 
 const UpdateProfil = () => {
 
-    const [avatar, setAvatar] = useState('');
-    const [bio, setBio] = useState('');
+        const [users, setUsers] = useState([]);
+        const [avatar, setAvatar] = useState({ preview: '', data: '' })
+        const [bio, setBio] = useState('')
+        const [username, setUsername] = useState('')
 
-    const storage = JSON.parse(localStorage.getItem('User'));
-    let token = "Bearer " +  storage.token;
+        const storage = JSON.parse(localStorage.getItem('User'));
+        const token = "Bearer " +  storage.token;
+
+    useEffect(() => {
+
+        const fetchProfil = async () => {
+
+            try {
+                const usersData = await axios.get(`api/users/profile/${storage.userId}`, 
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token
+                    }
+                });
+                console.log(usersData.data)
+                setUsers(usersData.data);
+            } catch (err) {}
+        };
+        fetchProfil();
+    }, [token]);
 
 
-    console.log(token)
+        const HandleEditBioProfil = async (e) => {
 
-const HandleUpdateProfil = async (e) => {
+          e.preventDefault()
+          const formData = new FormData()
+          formData.append('file', avatar.data)
+          formData.append('bio', bio)
+          formData.append('username', username)
 
-    e.preventDefault();
-
-    try{
-            const usersData = await axios.put(`api/users/profile/${storage.userId}`, 
-            JSON.stringify(storage.avatar,storage.bio),
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': token
-                }
-            })
-            console.log(usersData.data)
-            return usersData.data;
-        } catch (err) {
-            return err
+          axios.put(`api/users/profile/${storage.userId}`, formData, {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+          })
+          .then(res => {
+            console.log(formData)
+              console.log(res)
+                window.location = '/profil';
+          })
         }
-    };
+      
+        const handleFileChange = (e) => {
+          const img = {
+            preview: URL.createObjectURL(e.target.files[0]),
+            data: e.target.files[0],
+          }
+          setAvatar(img)
+        }
+
 
     return (
-        <form onSubmit={HandleUpdateProfil}>
-        <input 
-        type="text" 
-        id='avatar'
-        autoComplete='off'
-        onChange={(e) => setAvatar(e.target.value)}
-        placeholder="Avatar"
-        value={avatar}
-        />
-        <br />
-        <input 
-        type="text" 
-        id='bio'
-        autoComplete='off'
-        onChange={(e) => setBio(e.target.value)}
-        placeholder="Bio"
-        value={bio}
-        />
-        <img src="../images/icons/send.svg" alt="edit" onClick={HandleUpdateProfil}/>
-        </form>
+        <div>
+        <NavBarHome/>
+        <div className='page-user-container'>
+            <section className='container-user'>
+                <div className="user">
+                    <div className='users-update-container'>
+                        <form className='users-form-update-container' onSubmit={HandleEditBioProfil}>
+                        <div className='users-update-container-profil' >
+                                <img className='users-update-avatar' crossOrigin='anonymous' src={users.avatar} alt="avatar" />
+                                {avatar.preview && <img src={avatar.preview} width='100' height='100' />}
+                            <input 
+                            type="file" 
+                            id='avatar'
+                            name='file'
+                            onChange={handleFileChange}
+                            />
+                        </div>
+                        <div className='users-update-container-bio'>
+                            <div className='users-update-bio'>
+                                <h1>Bio</h1>
+                                <input 
+                                type="text" 
+                                id='bio'
+                                autoComplete='off'
+                                onChange={(e) => setBio(e.target.value)}
+                                placeholder={users.bio}
+                                value={bio}
+                                />
+                            </div>
+                            <div className='users-update-username'>
+                                <h1>Username</h1>
+                                <input 
+                                type="text" 
+                                id='bio'
+                                autoComplete='off'
+                                onChange={(e) => setUsername(e.target.value)}
+                                placeholder={users.username}
+                                value={username}
+                                />
+                            </div>
+                        </div>
+                            <button type='submit' >
+                                <img src="../images/icons/send.svg" alt="edit" />
+                            </button>
+                            </form>
+                                    
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
     );
 };
-
 
 export default UpdateProfil;

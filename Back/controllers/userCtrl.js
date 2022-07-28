@@ -103,13 +103,13 @@ exports.updateProfile = (req, res) => {
 		? {
 				// Si image
 				bio: req.body.bio,
-				avatar: `${req.protocol}://${req.get("host")}/images/${
-					req.file.filename
-				}`,
+				username: req.body.username,
+				avatar: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
 		  }
 		: {
 				// Sans image
 				bio: req.body.bio,
+				username: req.body.username
 		  };
 
 	db.User.findByPk(id).then((user) => {
@@ -120,7 +120,6 @@ exports.updateProfile = (req, res) => {
 			: {
 					name: user.avatar,
 			  };
-			  console.log(filename)
 		fs.unlink(`images/${filename.name}`, () => {
 			db.User.update(data, {
 				where: { id: id },

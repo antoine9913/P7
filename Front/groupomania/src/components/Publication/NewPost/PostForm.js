@@ -11,32 +11,39 @@ const postRef = useRef();
 
 const [title, setTitle] = useState('');
 const [content, setContent] = useState('');
-const [attachement, setAttachement] = useState('');
+const [attachment, setAttachment] = useState({ preview: '', data: '' });
 
 const handlePost = async (e) => {
 
     e.preventDefault();
 
-    const storage = JSON.parse(localStorage.getItem('User'));
-    let token = "Bearer " +  storage.token;
+    const formData = new FormData()
+    formData.append('file', attachment.data)
+    formData.append('title', title)
+    formData.append('content', content)
 
-    try{
-        const response = await axios.post(`api/post/create`,
-        JSON.stringify({ title, content, attachement }),
-        {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': token
-            }
+    const storage = JSON.parse(localStorage.getItem('User'));
+    const token = "Bearer " +  storage.token;
+
+    axios.post(`api/post/create`, formData, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
         }
-        );
-        window.location = "/home";
-        console.log(response.data)
-        return response.data;
-    } 
-    catch (err) {
-        console.error(err)
+    })
+    .then(res => {
+    console.log(formData)
+    console.log(res)
+    window.location = '/home';
+})
 }
+
+const handleFile = (e) => {
+  const img = {
+    preview: URL.createObjectURL(e.target.files[0]),
+    data: e.target.files[0],
+  }
+  setAttachment(img)
 }
 
     return (
@@ -66,13 +73,12 @@ const handlePost = async (e) => {
                <br />
            </form>
            <form className='form-signIn-send'>
+                    {attachment.preview && <img src={attachment.preview} width='100' height='100' />}
                <input 
                type="file" 
-               id='attachement'
-               ref={postRef}
-               autoComplete='off'
-               onChange={(e) => setAttachement(e.target.value)}
-               value={attachement}
+               id='attachment'
+               name='file'
+               onChange={handleFile}
                />
             <button onClick={handlePost}>
                 <img className='logo-allpage' src="./images/icons/send.svg" alt="sendPost" />

@@ -29,7 +29,7 @@ const Comment = (post) => {
             {comments.map((comment, index) => (
                 <div key={index} className="comments">
                 <div className='posts-user-container'>
-                    <img className='posts-user-avatar' src={comment.User.avatar} alt="avatar" />
+                    <img className='posts-user-avatar' crossorigin="anonymous" src={comment.User.avatar} alt="avatar" />
                     <h1 className='posts-user-username'>{comment.User.username}</h1>
                         <div className='post-user-timestamp'>
                             <h3 key={"date" + comment.id}>Publié le <Moment key={"date" + comment.id} format="DD MMM YYYY" date={comment.createdAt} /></h3>
