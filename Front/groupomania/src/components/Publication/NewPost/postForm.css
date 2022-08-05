@@ -34,7 +34,7 @@
     width: 96%;
 }
 
-@media only screen and (min-width: 320px) and (max-width:640px){
+@media only screen and (min-width: 320px) and (max-width:500px){
 
     .container-new-post {
         margin: 30px 0;
@@ -52,6 +52,14 @@
         object-fit: cover;
         width: 50px;
         height: 50px;
+    }
+
+}
+
+@media only screen and (min-width: 501px) and (max-width:1023px){
+
+    .container-new-post {
+        width: 100%;
     }
 
 }

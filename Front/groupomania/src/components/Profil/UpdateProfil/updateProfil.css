@@ -35,7 +35,7 @@
     margin-bottom: 40px
 }
 
-@media only screen and (min-width: 320px) and (max-width:640px) {
+@media only screen and (min-width: 320px) and (max-width:500px) {
 
     .users-update-avatar {
         width: 180px;
@@ -52,7 +52,6 @@
     }
 
     input[type="text"], input[type="password"], button, textarea {
-        width: auto;
         font-size: 0.80em;
     }
 
@@ -62,7 +61,7 @@
 
 }
 
-@media only screen and (min-width:641px) and (max-width:768px) {
+@media only screen and (min-width:501px) and (max-width:1023px) {
 
     .users-update-avatar {
         object-fit: cover;

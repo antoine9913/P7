@@ -93,7 +93,7 @@ const UpdatePost = (id) => {
                               />
                             </div>
                             <div className='post-update-content'>
-                              <h1>Content</h1>
+                              <h1>Contenu</h1>
                               <input 
                               type="text" 
                               id='content'
