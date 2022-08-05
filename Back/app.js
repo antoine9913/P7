@@ -2,8 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const helmet = require("helmet");
-const cors = require('cors');
-
+const cors = require("cors");
 
 const app = express();
 
@@ -15,21 +14,27 @@ require("dotenv").config();
 const db = require("./models");
 //Connexion à la base de données
 db.sequelize
-	.authenticate()
-	.then(() => {
-		console.log("Connecté à la base de données avec succès");
-	})
-	.catch((error) => {
-		console.log("Impossible de se connecter à la base de données : ", error);
-	});
-    
+  .authenticate()
+  .then(() => {
+    console.log("Connecté à la base de données avec succès");
+  })
+  .catch((error) => {
+    console.log("Impossible de se connecter à la base de données : ", error);
+  });
+
 //En-têtes HTTP
 app.use(helmet());
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-    next();
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, PATCH, OPTIONS"
+  );
+  next();
 });
 app.use(cors());
 

@@ -27,7 +27,6 @@ const NavBarHome = () => {
                         'Authorization': token
                     }
                 });
-                console.log(usersData.data)
                 setUsers(usersData.data);
             } catch (err) {}
         };
@@ -46,13 +45,13 @@ const NavBarHome = () => {
                     </div>
                 <ul className="left-nav-container">
                         <li className='left-nav-link'>
-                        <NavLink to='/home' exact activeClassName="active-left-nav">
+                        <NavLink to='/home' >
                                     <FontAwesomeIcon icon={faHouse}/>
                                     <h4>Acceuil</h4>
                         </NavLink>
                         </li>
                         <li>
-                        <NavLink to='/profil' exact activeClassName="active-left-nav">
+                        <NavLink to='/profil' >
                                     <FontAwesomeIcon icon={faUser}/>
                                     <h4>Profil</h4>
                         </NavLink>

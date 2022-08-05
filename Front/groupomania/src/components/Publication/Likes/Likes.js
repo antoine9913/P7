@@ -13,7 +13,7 @@
 
 //             function LikeSubmit () {
 //                 try {
-//                     const likeData = axios.post(`http://localhost:8080/api/post/:id/like`, 
+//                     const likeData = axios.post(`http://localhost:8080/api/post/:id/like`,
 //                     JSON.stringify({
 //                         postId: postId,
 //                         userId: userId,

@@ -1,23 +1,21 @@
-import React from 'react';
+import React from "react";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
 const Logout = () => {
+  const logoutHandler = (event) => {
+    event.preventDefault();
+    localStorage.clear();
+    window.location = "/";
+  };
 
-    const logoutHandler = (event) => {
-        event.preventDefault();
-        localStorage.clear()
-        window.location = '/';
-    };
-
-    return (
-        <NavLink to='/' onClick={logoutHandler} exact activeClassName="active-left-nav">
-            <FontAwesomeIcon icon={faRightFromBracket}/>
-            <h4>Déconnexion</h4>
-        </NavLink>
-    );
-
+  return (
+    <NavLink to="/" onClick={logoutHandler} className="active-left-nav">
+      <FontAwesomeIcon icon={faRightFromBracket} />
+      <h4>Déconnexion</h4>
+    </NavLink>
+  );
 };
 
 export default Logout;

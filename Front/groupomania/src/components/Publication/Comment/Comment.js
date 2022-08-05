@@ -1,68 +1,88 @@
-import React, { useEffect, useState } from 'react';
-import Moment from 'react-moment';
+import React, { useEffect, useState } from "react";
+import Moment from "react-moment";
 
-import { faAngleDown, faHouse, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import axios from '../../../api/axios';
-import DeleteComment from '../DeleteComment/DeleteComment';
+import axios from "../../../api/axios";
+import DeleteComment from "../DeleteComment/DeleteComment";
 
-import './comment.css'
+import "./comment.css";
 
 const Comment = (post) => {
-    
-    const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState([]);
 
-    useEffect(() => {
-        const fetchComment = async () => {
-            try {
-                const commentsData = await axios.get(`api/comment/${post.post.id}/comment`,
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                    }
-                });
-                console.log(commentsData.data)
-                setComments(commentsData.data);
-            } catch (err) {}
-        };
-        fetchComment();
-    },[]);  
+  const storage = JSON.parse(localStorage.getItem("User"));
+  const isAdmin = storage.isAdmin;
 
-    const [isShown, setIsShown] = useState(false);
+  useEffect(() => {
+    const fetchComment = async () => {
+      try {
+        const commentsData = await axios.get(
+          `api/comment/${post.post.id}/comment`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        setComments(commentsData.data);
+      } catch (err) {}
+    };
+    fetchComment();
+  }, []);
 
-  const handleClick = event => {
-    setIsShown(current => !current);
+  const [isShown, setIsShown] = useState(false);
+
+  const handleClick = (event) => {
+    setIsShown((current) => !current);
   };
 
-    return (
-        <div className='comments-container'>
-            <button onClick={handleClick}>
-                <FontAwesomeIcon icon={faAngleDown} className='comment-scrolling-svg'/>
-            </button>
-            {isShown && (
-                <section className='section-comments'>
-                {comments.map((comment, index) => (
-                <div key={index} className="comments">
-                <div className='posts-user-container'>
-                    <img className='posts-user-avatar' crossorigin="anonymous" src={comment.User.avatar} alt="avatar" />
-                    <h1 className='posts-user-username'>{comment.User.username}</h1>
-                        <div className='post-user-timestamp'>
-                            <h3 className='date' key={"date" + comment.id}>Publié le <Moment key={"date" + comment.id} format="DD MMM YYYY" date={comment.createdAt} /></h3>
-                            <br />
-                            <h3 className='date' key={"date" + comment.id}> à <Moment key={"date" + comment.id} format="HH:mm:ss" date={comment.createdAt} /></h3>
-                        </div>
-                 </div>
-                    <div className='comment-container'>
-                        <p className='comment-content'>{comment.content}</p>
-                    </div>
-                    <DeleteComment id= {comment.id}/>
+  return (
+    <div className="comments-container">
+      <button onClick={handleClick}>
+        <FontAwesomeIcon icon={faAngleDown} className="comment-scrolling-svg" />
+      </button>
+      {isShown && (
+        <section className="section-comments">
+          {comments.map((comment, index) => (
+            <div key={index} className="comments">
+              <div className="posts-user-container">
+                <img
+                  className="posts-user-avatar"
+                  crossOrigin="anonymous"
+                  src={comment.User.avatar}
+                  alt="avatar"
+                />
+                <h1 className="posts-user-username">{comment.User.username}</h1>
+                <div key={"date" + comment.id} className="post-user-timestamp">
+                  <h3 className="date">
+                    Publié le{" "}
+                    <Moment format="DD MMM YYYY" date={comment.createdAt} />
+                  </h3>
+                  <br />
+                  <h3 className="date">
+                    {" "}
+                    à <Moment format="HH:mm:ss" date={comment.createdAt} />
+                  </h3>
                 </div>
-            ))}
-            </section>
-            )}
-        </div>
-    );
-}
+              </div>
+              <div className="comment-container">
+                <p className="comment-content">{comment.content}</p>
+              </div>
+              {storage.userId === comment.User.id || isAdmin ? (
+                <div className="delete-comment">
+                  <DeleteComment id={comment.id} />
+                </div>
+              ) : (
+                <div></div>
+              )}
+            </div>
+          ))}
+        </section>
+      )}
+    </div>
+  );
+};
 
 export default Comment;
