@@ -50,6 +50,7 @@ const handleFile = (e) => {
         <section className='container-new-post'>
            <form>
                <input 
+               className='postFrom-input'
                type="text" 
                id='title'
                ref={postRef}
@@ -61,6 +62,7 @@ const handleFile = (e) => {
                />
                <br />
                <input 
+               className='postFrom-input'
                type="text" 
                id='content'
                ref={postRef}
@@ -73,14 +75,14 @@ const handleFile = (e) => {
                <br />
            </form>
            <form className='form-signIn-send'>
-                    {attachment.preview && <img src={attachment.preview} width='100' height='100' />}
+                    {attachment.preview && <img src={attachment.preview} className='post-update-preview-attachment' />}
                <input 
                type="file" 
                id='attachment'
                name='file'
                onChange={handleFile}
                />
-            <button onClick={handlePost}>
+            <button className='post-button' onClick={handlePost}>
                 <img className='logo-allpage' src="./images/icons/send.svg" alt="sendPost" />
             </button>
             </form>

@@ -1,8 +1,9 @@
 .container-new-post {
-    width: auto;
-    margin: 50px 0;
-    border-bottom: 2px solid black;
-    padding: 15px 15px 0 15px;
+    width: 80%;
+    border-radius: 20px;
+    margin: 100px 0 50px 0;
+    box-shadow: 0px 0px 20px 0px black;
+    padding: 1rem;
 }
 
 .form-signIn-send {
@@ -10,9 +11,50 @@
     align-items: center;
     justify-content: space-around;
     border-top: 2px solid black;
-    border-radius: 0 0 20px 20px;
+    border-radius: 0 0 20px 20px; 
+    padding-top: 15px;
 }
 
-button { 
+.post-button { 
     background-color: white;
+    box-shadow: none;
+    cursor: pointer;
+    padding: 0;
+    width: auto;
 }
+
+.post-update-preview-attachment {    
+    margin-right: 15px;
+    object-fit: cover;
+    width: 150px;
+    height: 150px;
+}
+
+.postFrom-input {
+    width: 96%;
+}
+
+@media only screen and (min-width: 320px) and (max-width:640px){
+
+    .container-new-post {
+        margin: 30px 0;
+    }
+
+    input {
+        font-size: 0.7em;
+    }
+
+    .form-signIn-send {
+        padding-top: 10px;
+    }
+
+    .post-update-preview-attachment {
+        object-fit: cover;
+        width: 50px;
+        height: 50px;
+    }
+
+}
+
+
+

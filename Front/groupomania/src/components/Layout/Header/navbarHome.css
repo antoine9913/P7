@@ -16,8 +16,8 @@ h5 {
 }
 
 .navbar-avatar {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 25px;
     object-fit: cover;
 }
@@ -84,7 +84,7 @@ nav {
   
   .left-nav-container {
     margin: 0;
-    width: 100%;
+    width: 90.5%;
     text-align: left;
     overflow: hidden;
     max-height: 0;
@@ -124,3 +124,70 @@ nav {
   .sous-menu > li:hover > a {
     color: black;
   }
+
+  svg {
+    font-size: 1em;
+  }
+
+
+  @media only screen and (min-width: 320px) and (max-width:640px){
+
+    .navbar-User-Informations {       
+      top: -10px;
+  }
+
+  .navbar-avatar{
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    border-radius: 13px;
+  }
+
+  .navbar-button{
+    width: 50px;
+    height: 0px;
+  }
+
+  .navHome-container {
+    height: auto;
+  }
+
+  .left-nav-container {
+    padding-left: 33px;
+    width: 74%;
+  }
+
+  h4, h5 {
+    display: none;
+  }
+
+}
+
+@media only screen and (min-width:641px) and (max-width:768px) {
+
+.navbar-avatar{
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  border-radius: 13px;
+}
+
+.navbar-button{
+  width: 50px;
+  height: 0px;
+}
+
+.navHome-container {
+  height: auto;
+}
+
+.left-nav-container {
+  padding-left: 33px;
+  width: 74%;
+}
+
+h4, h5 {
+  display: none;
+}
+
+}

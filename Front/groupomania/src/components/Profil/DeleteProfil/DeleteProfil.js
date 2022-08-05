@@ -30,7 +30,7 @@ const DeleteProfil = () => {
 
     return (
         <button onClick={HandleDeleteProfil}>
-            <img src="../images/icons/trash.svg" alt="trash" />
+            <img src="../images/icons/trash.svg" className='logo-allpage' alt="trash" />
         </button>
     );
 };

@@ -1,0 +1,48 @@
+.comments-container {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.comment-scrolling-svg {
+    color: black;
+    font-size: 2.3em;
+}
+
+.section-comments {
+    width: auto;
+    border: none; 
+    border-radius: 20px; 
+    margin: 0;
+    box-shadow: none;
+}
+
+.date {
+    position: absolute;
+    right: 130px;
+    font-size: 1.1em;
+    margin: -10px;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 640px) {
+    
+    .date {
+        right: 65px;
+        font-size: 0.7em;
+        margin: -5px;
+    }
+
+    .comment-scrolling-svg {
+        font-size: 1.7em;
+    }
+}
+
+@media only screen and (min-width: 641px) and (max-width:768px) {
+
+    .date {
+        right: 65px;
+        font-size: 0.8em;
+        margin: -5px;
+    }
+
+}

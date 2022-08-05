@@ -27,7 +27,7 @@ exports.register = (req, res) => {
 					db.User.create({
 						email: req.body.email,
 						username: req.body.username,
-						avatar: "http://localhost:5000/images/avatar.png",
+						avatar: "http://localhost:5000/images/imagesFirstConnection/avatar.png",
 						bio: "Veuillez compléter votre profil...",
 						password: hash,
 						isAdmin: false
@@ -109,13 +109,14 @@ exports.updateProfile = (req, res) => {
 		: {
 				// Sans image
 				bio: req.body.bio,
-				username: req.body.username
+				username: req.body.username,
+				avatar: "http://localhost:5000/images/imagesFirstConnection/avatar.png"
 		  };
 
 	db.User.findByPk(id).then((user) => {
 		const filename = user.avatar
 			? {
-					name: user.avatar.split("/images/")[1],
+					name: user.avatar.split("/images")[1],
 			  }
 			: {
 					name: user.avatar,

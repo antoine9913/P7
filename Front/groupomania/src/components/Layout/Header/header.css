@@ -5,8 +5,37 @@
     justify-content: center;
     background-color: black;
     position: relative;
+    align-items: center;
 }
 
 .logo-groupomania {
-    width: 390px;
+    width: 275px;
+}
+
+@media only screen and (min-width: 320px) and (max-width:640px){
+
+    .head-container {
+        height: 40px;
+        justify-content: flex-start;
+    }
+
+    .logo-groupomania{
+        margin-left: 20px;
+        width: 150px;
+        height: fit-content;
+    }
+}
+
+@media only screen and (min-width:641px) and (max-width:768px) {
+
+    .head-container {
+        height: 60px;
+    }
+
+    .logo-groupomania{
+        margin-left: 0;
+        width: 280px;
+        height: fit-content;
+    }
+
 }

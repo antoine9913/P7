@@ -6,7 +6,7 @@ exports.getAllPosts = (req, res) => {
 		include: [
 			{
 				model: db.User,
-				attributes: ["username", "avatar"],
+				attributes: ["username", "avatar", "id"],
 			},
 			{
 				model: db.Comment,

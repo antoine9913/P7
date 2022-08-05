@@ -39,15 +39,15 @@ const AllProfil = () => {
                     <div className="user">
                         <div className='users-profil-container'>
                             <div className='users-profil-container-avatar'>
-                                <img className='users-profil-avatar' crossorigin="anonymous" src={users.avatar} />
+                                <img className='users-profil-avatar' crossorigin="anonymous" src={users.avatar} alt="avatar"/>
                             </div>
                             <div className='users-profil-container-username'>
                                 <h1>Username</h1>
-                                <h2 className='users-profil-username'>{users.username}</h2>
+                                <p className='users-profil-username'>{users.username}</p>
                             </div>
                             <div className='users-profil-container-email'>
                                 <h1>Email</h1>
-                                <h2 className='users-profil-email'>{users.email}</h2>
+                                <p className='users-profil-email'>{users.email}</p>
                             </div>
                             <div className='users-profil-container-bio'>
                                 <h1>Bio</h1>
@@ -61,7 +61,7 @@ const AllProfil = () => {
                                 <DeleteProfil/>
                                 <button>
                                     <a className='allProfil-a-update' href="/updateProfil" >
-                                        <img src="../images/icons/edit.svg" alt="editprofil" />
+                                        <img src="../images/icons/edit.svg" className='logo-allpage' alt="editprofil" />
                                     </a>
                                 </button>
                             </div>

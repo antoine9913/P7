@@ -1,22 +1,50 @@
 .container-thread {
+    display: flex;
     position: relative;
-    width: 40%;
+    width: 50%;
     font-size: 1em;
-}
-
-h1 , h2 {
-    font-size: 1.2em;
-}
-
-p {
-    font-size: 1em;
+    flex-direction: column;
+    align-items: center;
 }
 
 .img-logo-thread {
-    opacity: 25%;
-    left: -700px;
     position: absolute;
     z-index: -1;
-    top: -500px;
-    width: auto;
+    opacity: 25%;
+    left: -600px;
+    top: -540px;
+    width: 1200px;
+}
+
+@media only screen and (min-width: 320px) and (max-width:640px){
+
+    .container-thread {
+        width: 80%;
+        font-size: 0.8em;
+    }
+
+    h1, h2 {
+        font-size: 1em;
+    }
+
+    p {
+        font-size: 0.9em;
+    }
+
+    .img-logo-thread {
+        left: -270px;
+        top: -180px;
+        width: 540px;
+    }
+
+}
+
+@media only screen and (min-width:641px) and (max-width:768px) {
+
+    .img-logo-thread {
+        left: -600px;
+        top: -450px;
+        width: 900px;
+    }
+
 }

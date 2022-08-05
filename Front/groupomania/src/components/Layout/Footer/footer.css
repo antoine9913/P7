@@ -16,3 +16,31 @@
     align-items: center;
     justify-content: center;
 }
+
+@media only screen and (min-width: 320px) and (max-width:640px){
+
+    .footer-container {
+        height: 40px;
+    }
+
+    .footer-p {
+        font-size: 0.8em;
+        width: 250px;
+    }
+
+}
+
+
+@media only screen and (min-width:641px) and (max-width:768px) {
+
+
+    .footer-container {
+        height: 60px;
+    }
+
+    .footer-p {
+        font-size: 1em;
+        width: 250px;
+    }
+
+}

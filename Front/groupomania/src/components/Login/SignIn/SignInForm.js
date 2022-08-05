@@ -59,7 +59,7 @@ const SignInForm = () => {
     return (
         <div className="container">
             <img className="img-logo" src="../images/icon.svg" alt="logo background" />
-       <section>
+       <section className='container-connexion'>
            <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
            <form onSubmit={handleLogin}>
                <input 

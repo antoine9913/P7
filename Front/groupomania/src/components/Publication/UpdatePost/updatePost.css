@@ -4,18 +4,16 @@
     align-items: center;
 }
 
-.post-update-form {
+.post-update-form {   
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    border-radius: 20px;
     padding: 1rem;
     position: relative;
     align-items: center;
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
     border-radius: 20px;
     margin-bottom: 20px;
+    box-shadow: inset 0px 0px 10px 0px black;
 }
 
 .post-update-container-attachment {
@@ -29,6 +27,33 @@
     margin-bottom: 20px;
 }
 
-.post-update-preview-attachment {
-    margin-bottom: 20px;
+input {
+    width: 80%;
+}
+
+@media only screen and (min-width: 320px) and (max-width:640px) {
+
+    input {
+        font-size: 0.6rem;
+    }
+
+    .post-update-form {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .post-update-title, .post-update-content {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+}
+
+@media only screen and (min-width: 641px) and (max-width:768px) {
+
+    input {
+        width: 80%;
+        font-size: 0.8em;
+    }
+
 }

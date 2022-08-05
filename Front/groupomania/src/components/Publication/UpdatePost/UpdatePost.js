@@ -66,13 +66,13 @@ const UpdatePost = (id) => {
 
   return (
                 <div className='post-update-container'>
-                  <button className='post-update-button' onClick={handleClick}>
-                      <img src="../images/icons/edit.svg" alt="editprofil" />
+                  <button className='post-button' onClick={handleClick}>
+                      <img className='logo-allpage' src="../images/icons/edit.svg" alt="editpost" />
                   </button>  
                       {isShown && (
                     <form className='post-update-form' onSubmit={HandleEditPost}>
                         <div className='post-update-container-attachment'>
-                            {attachment.preview && <img className='post-update-preview-attachment' src={attachment.preview} width='100' height='100' />}
+                            {attachment.preview && <img className='post-update-preview-attachment' src={attachment.preview} />}
                         <input 
                         type="file" 
                         id='attachment'
@@ -105,7 +105,7 @@ const UpdatePost = (id) => {
                             </div>
                         </div>
                         <button type='submit' >
-                            <img src="../images/icons/send.svg" alt="edit" />
+                            <img className='logo-allpage' src="../images/icons/send.svg" alt="edit" />
                         </button>
                       </form>
                       )}     

@@ -17,6 +17,7 @@ const AllPost = () => {
 
     const storage = JSON.parse(localStorage.getItem('User'));
     const token = "Bearer " +  storage.token;
+    const isAdmin = storage.isAdmin ;
     
     useEffect(() => {
         const fetchPosts = async () => {
@@ -54,10 +55,16 @@ const AllPost = () => {
                 <img className='posts-attachment'  crossorigin="anonymous" src={post.attachment} alt="attachment" />
                 <p className='posts-content'>{post.content}</p>
             </div>
-            <div className='posts-modification-container'>
-                <UpdatePost id= {post.id}/>
-                <DeletePost id= {post.id}/>
-            </div>
+                {(() => {
+                    if (storage.userId === post.User.id || isAdmin) {
+                    return (
+                        <div className='posts-modification-container'>
+                            <UpdatePost id= {post.id}/>
+                            <DeletePost id= {post.id}/>
+                        </div>  
+                     )
+                    }
+                })()}
                 <NewComment id= {post.id}/>
                 <Comment post= {post}/>
         </div>

@@ -70,6 +70,7 @@ const UpdateProfil = () => {
         <NavBarHome/>
         <div className='page-user-container'>
             <section className='container-user'>
+                <img className="img-logo" src="../images/icon.svg" alt="logo background" />
                 <div className="user">
                     <div className='users-update-container'>
                         <form className='users-form-update-container' onSubmit={HandleEditBioProfil}>
@@ -89,7 +90,7 @@ const UpdateProfil = () => {
                                 <input 
                                 type="text" 
                                 id='bio'
-                                autoComplete='off'
+                                autoComplete="off"
                                 onChange={(e) => setBio(e.target.value)}
                                 placeholder={users.bio}
                                 value={bio}
@@ -108,7 +109,7 @@ const UpdateProfil = () => {
                             </div>
                         </div>
                             <button type='submit' >
-                                <img src="../images/icons/send.svg" alt="edit" />
+                                <img src="../images/icons/send.svg" className='logo-allpage' alt="edit" />
                             </button>
                             </form>
                                     
