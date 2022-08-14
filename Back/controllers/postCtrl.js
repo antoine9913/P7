@@ -98,7 +98,6 @@ exports.create = (req, res) => {
       }
     })
     .catch((error) => {
-      console.log(error);
       res.status(500).json({ error: "erreur serveur" });
     });
 };
@@ -214,49 +213,4 @@ exports.delete = (req, res) => {
     .catch((error) =>
       res.status(500).json({ error: "Impossible de supprimer le post" })
     );
-};
-
-// Ajouter un like
-exports.addLike = (req, res) => {
-  const like = {
-    PostId: req.body.PostId,
-    UserId: req.userId,
-  };
-  db.Like.create(like)
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.post || "Impossible de liker cet article.",
-      });
-    });
-};
-
-// Récupérer les likes d'un message
-exports.getAllLikes = (req, res) => {
-  db.Like.findAll({ where: { PostId: req.params.id } })
-    .then((post) => {
-      res.status(200).json(post);
-    })
-    .catch((error) => res.status(500).json({ error }));
-};
-
-// Ajouter un dislike
-exports.removeLike = (req, res) => {
-  db.Like.findOne({ where: { UserId: req.userId, PostId: req.params.id } })
-    .then((like) => {
-      like
-        .destroy()
-        .then(() => res.status(200).json({ message: "like annulé !" }))
-        .catch((error) => {
-          console.log("2", error);
-          res.status(404).json({ error });
-        });
-    })
-
-    .catch((error) => {
-      console.log("1", error);
-      res.status(500).json({ error });
-    });
 };

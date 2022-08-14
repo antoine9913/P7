@@ -11,6 +11,7 @@ import "./comment.css";
 
 const Comment = (post) => {
   const [comments, setComments] = useState([]);
+  const [isShown, setIsShown] = useState(false);
 
   const storage = JSON.parse(localStorage.getItem("User"));
   const isAdmin = storage.isAdmin;
@@ -31,8 +32,6 @@ const Comment = (post) => {
     };
     fetchComment();
   }, []);
-
-  const [isShown, setIsShown] = useState(false);
 
   const handleClick = (event) => {
     setIsShown((current) => !current);

@@ -12,9 +12,4 @@ router.get("/:id", auth, postCtrl.getOnePost);
 router.put("/update/:id", upload.single("file"), postCtrl.update);
 router.delete("/:id/delete/:id", auth, postCtrl.delete);
 
-//Likes
-router.post("/:id/like", auth, postCtrl.addLike);
-router.get("/:id/like", auth, postCtrl.getAllLikes);
-router.delete("/:id/like", auth, postCtrl.removeLike);
-
 module.exports = router;
