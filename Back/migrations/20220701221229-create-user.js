@@ -23,7 +23,8 @@ module.exports = {
       avatar: {
         allowNull: true,
         type: Sequelize.STRING,
-        defaultValue: "http://localhost:5000/images/avatar.png",
+        defaultValue:
+          "http://localhost:5000/images/imagesFirstConnection/avatar.png",
       },
       bio: {
         allowNull: true,
