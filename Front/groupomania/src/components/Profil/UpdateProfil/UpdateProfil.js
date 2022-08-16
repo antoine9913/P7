@@ -104,7 +104,7 @@ const UpdateProfil = () => {
                     />
                   </div>
                   <div className="users-update-username">
-                    <h1>Username</h1>
+                    <h1>Nom d'utilisateur</h1>
                     <input
                       type="text"
                       id="bio"

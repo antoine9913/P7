@@ -3,7 +3,6 @@ import Moment from "react-moment";
 
 import axios from "../../../api/axios";
 import NewComment from "../NewComment/NewComment";
-// import Likes from '../Likes/Likes';
 
 import "./allPost.css";
 import DeletePost from "../DeletePost/DeletePost";

@@ -39,6 +39,7 @@ const Comment = (post) => {
 
   return (
     <div className="comments-container">
+      <h6>Comentaires</h6>
       <button onClick={handleClick}>
         <FontAwesomeIcon icon={faAngleDown} className="comment-scrolling-svg" />
       </button>
@@ -69,7 +70,7 @@ const Comment = (post) => {
               <div className="comment-container">
                 <p className="comment-content">{comment.content}</p>
               </div>
-              {storage.userId === comment.User.id || isAdmin ? (
+              {storage.userId === comment.UserId || isAdmin ? (
                 <div className="delete-comment">
                   <DeleteComment id={comment.id} />
                 </div>

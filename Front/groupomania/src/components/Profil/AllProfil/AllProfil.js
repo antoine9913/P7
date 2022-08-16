@@ -51,7 +51,7 @@ const AllProfil = () => {
                 />
               </div>
               <div className="users-profil-container-username">
-                <h1>Username</h1>
+                <h1>Nom d'utilisateur</h1>
                 <p className="users-profil-username">{users.username}</p>
               </div>
               <div className="users-profil-container-email">

@@ -145,11 +145,11 @@ const SignUpForm = () => {
             }
           >
             <FontAwesomeIcon icon={faInfoCircle} />
-            4 to 24 characters.
+            4 à 24 caractères.
             <br />
-            Must begin with a letter.
+            Doit commencer par une lettre.
             <br />
-            Letters, numbers, underscores, hyphens allowed.
+            Lettres, chiffres, traits de soulignement, traits d'union autorisés.
           </p>
           <br />
 
@@ -183,11 +183,11 @@ const SignUpForm = () => {
             }
           >
             <FontAwesomeIcon icon={faInfoCircle} />
-            4 to 24 characters.
+            4 à 24 caractères.
             <br />
-            Must begin with a letter.
+            Doit commencer par une lettre.
             <br />
-            Letters, numbers, underscores, hyphens allowed.
+            Lettres, chiffres, traits de soulignement, traits d'union autorisés.
           </p>
           <br />
 
@@ -217,18 +217,12 @@ const SignUpForm = () => {
             }
           >
             <FontAwesomeIcon icon={faInfoCircle} />
-            8 to 24 characters.
+            8 à 24 caractères.
             <br />
-            Must include uppercase and lowercase letters, a number and a special
-            character.
+            Doit inclure des lettres majuscules et minuscules, un chiffre et un
+            caratère spécial.
             <br />
-            Allowed special characters:
-            <span aria-label="exclamation mark">!</span>
-            <span aria-label="at symbol">@</span>
-            <span aria-label="hashtag">#</span>
-            <span aria-label="dollar sign">$</span>
-            <span aria-label="percent">%</span>
-            <span aria-label="asterix">*</span>
+            Caractères spéciaux autorisés: ! @ # $ % *
           </p>
           <br />
 
@@ -262,7 +256,7 @@ const SignUpForm = () => {
             }
           >
             <FontAwesomeIcon icon={faInfoCircle} />
-            Must match the first password input field.
+            Doit correspondre au premier champ de saisie du mot de passe.
           </p>
 
           <button
