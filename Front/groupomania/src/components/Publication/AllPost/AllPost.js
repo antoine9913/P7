@@ -56,12 +56,16 @@ const AllPost = () => {
           </div>
           <div className="posts-container">
             <h2 className="posts-title">{post.title}</h2>
-            <img
-              className="posts-attachment"
-              crossOrigin="anonymous"
-              src={post.attachment}
-              alt="attachment"
-            />
+            {post.attachment ? (
+              <img
+                className="posts-attachment"
+                crossOrigin="anonymous"
+                src={post.attachment}
+                alt="attachment"
+              />
+            ) : (
+              <div></div>
+            )}
             <p className="posts-content">{post.content}</p>
           </div>
           {storage.userId === post.User.id || isAdmin ? (
